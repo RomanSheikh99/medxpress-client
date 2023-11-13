@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { forkJoin } from 'rxjs';
@@ -9,9 +9,9 @@ import { forkJoin } from 'rxjs';
   styleUrls: ['./products-by-category.component.scss'],
 })
 export class ProductsByCategoryComponent implements OnInit {
-  herbalProducts: Product[] = [];
-  allopathyProducts: Product[] = [];
+  medicines: Product[] = [];
   isLoading: boolean = false;
+  @Input() category!: {title: string};
 
   constructor(private productService: ProductService) {}
 
@@ -22,13 +22,9 @@ export class ProductsByCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
 
-    forkJoin([
-      this.productService.fetchProductsByType('herbal'),
-      this.productService.fetchProductsByType('allopathic'),
-    ]).subscribe({
-      next: ([herbalProducts, allopathyProducts]) => {
-        this.herbalProducts = herbalProducts;
-        this.allopathyProducts = allopathyProducts;
+   this.productService.fetchProductsByType(this.category.title).subscribe({
+      next: (medicines) => {
+        this.medicines = medicines;
       },
       error: (err) => {
         console.error(err);

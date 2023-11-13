@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private customerService: CustomerServicesService,
     private router: Router
-  ) {}
+  ) { }
 
   getLocation() {
     if (navigator.geolocation) {
@@ -144,15 +144,16 @@ export class RegisterComponent implements OnInit {
    */
   registrationFormSubmit() {
     if (this.registrationForm.valid) {
+      const { firstName, lastName, email, password, address, role, lat, lng } = this.registrationForm.value
       const customerData: CustomerRegister = {
-        firstName: this.registrationForm.value.firstName!,
-        lastName: this.registrationForm.value.lastName!,
-        email: this.registrationForm.value.email!,
-        password: this.registrationForm.value.password!,
-        address: this.registrationForm.value.address!,
-        role: this.registrationForm.value.role!,
-        lat: this.registrationForm.value.lat!,
-        lng: this.registrationForm.value.lng!,
+        firstName: firstName!,
+        lastName: lastName!,
+        email: email!,
+        password: password!,
+        address: address!,
+        role: role!,
+        lat: lat!,
+        lng: lng!,
       };
 
       this.customerService.registerCustomer(customerData).subscribe({

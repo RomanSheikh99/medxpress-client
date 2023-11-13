@@ -9,7 +9,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerServicesService } from '../../services/customer-services.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HotToastService } from '@ngneat/hot-toast';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +18,7 @@ import { HotToastService } from '@ngneat/hot-toast';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  private toastService = inject(HotToastService);
+  private message = inject(MessageService);
 
   constructor(
     private router: Router,
@@ -61,34 +61,12 @@ export class LoginComponent {
             data.access_token,
             data.expires_in
           );
-          this.toastService.success('Login Successful', {
-            icon: '😀',
-            position: 'top-center',
-            duration: 2000,
-            style: {
-              border: '1px solid #067A46',
-              padding: '16px',
-              color: '#067A46',
-              background: '#D2F895',
-              fontFamily: 'Agrandir-Regular',
-            },
-          });
+          this.message.success('Login Successful')
           this.router.navigate(['/home']);
         },
         error: (error) => {
           console.error(error);
-          this.toastService.error('Login failed', {
-            icon: '😞',
-            position: 'top-center',
-            duration: 2000,
-            style: {
-              border: '1px solid #FF0000',
-              padding: '16px',
-              color: '#FF0000',
-              background: '#FFB0B0',
-              fontFamily: 'Agrandir-Regular',
-            },
-          });
+          this.message.failed('Login failed')
         },
       });
     }

@@ -25,6 +25,7 @@ export class ProductService {
    * @returns An observable of the fetched products.
    */
   fetchProductsByType(type: string): Observable<Product[]> {
+    console.log(type)
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.tokenService.getAccessToken()}`,
     });

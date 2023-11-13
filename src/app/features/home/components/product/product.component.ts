@@ -46,6 +46,7 @@ export class ProductComponent {
     }
   }
 
+
   /**
    * Navigates to the product details page for the current product.
    */

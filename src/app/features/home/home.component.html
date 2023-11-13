@@ -1,16 +1,19 @@
 <!-- ! Header -->
-<app-header></app-header>
-<div class="mb-16">
-  <!-- ! Search Box -->
-  <app-search></app-search>
+<div class=" overflow-y-auto">
+  <app-header></app-header>
+  <div class="mb-16">
+    <!-- ! Search Box -->
+    <app-search></app-search>
 
-  <!-- ! Categories -->
-  <app-category-list></app-category-list>
+    <!-- ! Categories -->
+    <app-category-list></app-category-list>
 
-  <!-- ! Product Category with Product -->
+    <!-- ! Product Category with Product -->
 
-  <app-products-by-category></app-products-by-category>
+    <app-products-by-category *ngFor="let category of categories" [category]="category"></app-products-by-category>
 
-  <!-- ! Bottom Menu -->
-  <app-bottom-menu></app-bottom-menu>
+    <!-- ! Bottom Menu -->
+    <app-bottom-menu></app-bottom-menu>
+  </div>
+
 </div>

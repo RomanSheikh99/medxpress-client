@@ -9,7 +9,7 @@ import { Product } from 'src/app/shared/models/product.model';
 export class HomeComponent implements OnInit {
 
   showModal: boolean = false;
-
+  categories = [{title: "allopathic"},{title: "herbal"}]
 
 
   categoryTitle: string = '';

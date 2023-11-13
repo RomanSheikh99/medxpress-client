@@ -1,26 +1,27 @@
 <!-- ! Herbal Products  -->
 <section>
-  <h3 class="font-agrandirRegular pl-4">Herbal</h3>
+  <h3 class="font-agrandirRegular capitalize mt-8 mb-4 pl-4">{{category.title}}</h3>
   <div
     class="py-2 flex flex-row flex-grow gap-5 justify-start items-center overflow-x-auto product-list px-4"
   >
     <div
       class="flex justify-center items-center w-full h-full"
-      *ngIf="isLoading; else loadHerbalProducts"
+      *ngIf="isLoading"
     >
       <div class="loading loading-bars text-primary loading-lg"></div>
     </div>
-    <ng-template #loadHerbalProducts>
+    <!-- <ng-template> -->
       <app-product
-        *ngFor="let product of herbalProducts"
+        *ngFor="let product of medicines"
         [product]="product"
       ></app-product>
-    </ng-template>
+    <!-- </ng-template> -->
   </div>
 </section>
 
+
 <!-- ! Allopathy Products -->
-<section>
+<!-- <section>
   <h3 class="font-agrandirRegular pl-4 pt-2">Allopathy</h3>
   <div
     class="py-3 flex flex-row flex-grow gap-5 justify-start items-center overflow-x-auto product-list px-4"
@@ -38,4 +39,4 @@
       ></app-product>
     </ng-template>
   </div>
-</section>
+</section> -->
