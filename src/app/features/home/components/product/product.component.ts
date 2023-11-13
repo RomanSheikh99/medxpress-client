@@ -59,7 +59,6 @@ export class ProductComponent {
    */
   ngOnInit(): void {
     this.setImage();
-    console.log(this.product);
   }
 
   /**

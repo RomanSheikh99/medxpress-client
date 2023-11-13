@@ -22,6 +22,7 @@ import { CustomerServicesService } from '../customer/services/customer-services.
 import { catchError, switchMap, throwError } from 'rxjs';
 
 import { getBaseUrl } from '../../shared/utilityFunctions';
+import { config } from 'src/app/config/config';
 
 @Component({
   selector: 'app-cart',
@@ -150,9 +151,7 @@ export class CartComponent implements OnInit {
         })
       )
       .subscribe(async (res: any) => {
-        let stripe = await loadStripe(
-          'pk_test_51O7BlTI3fhUzlLHID14wOqnQbm460zgooTPbs6orv9XG6q7p1dLye1wU3svqjItgKvMxCrvvxdxh2bP9Tbp0me9O00RNX3DmHd'
-        );
+        let stripe = await loadStripe(config.pk);
         stripe?.redirectToCheckout({ sessionId: res.session.id });
       });
   }
